@@ -145,6 +145,3 @@ The handler tries each live source in turn (10-second timeout per request, brows
 Open source under the [MIT License](LICENSE).
 
 ---
-
-**Version**: 2.0.0
-**Last Updated**: June 2026
