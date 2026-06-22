@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* "Change Bureau" palette — mirrors tailwind.config.ts tokens. */
+:root {
+  --ink: #0c2a27;
+  --paper: #f4eee0;
+  --brass: #c2922e;
+  --muted: #5c6b66;
+  --alert: #c0492f;
+  --line: rgba(12, 42, 39, 0.12);
+}
+
+html {
+  background-color: var(--ink);
+}
+
+body {
+  background-color: var(--ink);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Tabular figures keep the ticker columns aligned as values change. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Signature: the converted figure flips in whenever the result updates. */
+@keyframes board-flip {
+  0% {
+    transform: translateY(-0.16em);
+    opacity: 0;
+    filter: blur(5px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.board-flip {
+  animation: board-flip 360ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Perforated divider, like the tear line on a bureau receipt. */
+.perforation {
+  height: 1px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--line) 0,
+    var(--line) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board-flip {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
